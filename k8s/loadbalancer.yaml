@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: vue-realworld-loadbalancer
+spec:
+  type: LoadBalancer
+  selector:
+    app: vue-realworld
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8080

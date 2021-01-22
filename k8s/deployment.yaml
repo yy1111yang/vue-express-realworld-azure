@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vue-realworld
+spec:
+  selector:
+      matchLabels:
+        app: vue-realworld
+  replicas: 3
+  template:
+      metadata:
+        labels:
+            app: vue-realworld
+      spec:
+        containers:
+        - name: vue-realworld
+          image: <>.azurecr.io/vue-express-realworld:v1
+          imagePullPolicy: Always
+          readinessProbe:
+            tcpSocket:
+              port: 8080
+          livenessProbe:
+            tcpSocket:
+              port: 8080
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "100m"
+            limits:
+              memory: "256Mi"
+              cpu: "500m"
